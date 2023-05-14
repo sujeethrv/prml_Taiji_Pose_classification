@@ -1,6 +1,6 @@
 # Taiji Pose Classification Project
 
-This repository contains the implementation of a multimodal approach to Taiji human pose recognition, leveraging ResNet-18, MLPs for foot pressure data, and 3D MoCAP body joint coordinates. The PSUTMM100 dataset, enriched with multiple modalities such as images, 3D MoCAP body joint coordinates, and foot pressure, was used for this project.
+This repository contains the implementation of a multimodal approach to Taiji human pose recognition, leveraging ResNet-18, MLPs for foot pressure data, and 3D MoCAP body joint coordinates. The PSUTMM100 dataset([link](http://vision.cse.psu.edu/data/data.shtml)), enriched with multiple modalities such as images, 3D MoCAP body joint coordinates, and foot pressure, was used for this project.
 
 ## Project Overview
 The aim of the project is to classify a pose into one of the 45 key poses and 1 non-key pose frame in the PSUTMM100 dataset. The model's performance is evaluated using a Leave-One-Subject-Out (LOSO) approach, with the classification accuracy measured using precision, recall, and F1-score for all classes.
