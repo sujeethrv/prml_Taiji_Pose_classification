@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 
 class TaijiDataset(Dataset):
-    def __init__(self, root_dir, transform=None, test_subject=None):
+    def __init__(self, root_dir, transform, test, test_subject=None):
         self.root_dir = root_dir
         self.transform = transform
         self.test_subject = test_subject
@@ -16,13 +16,21 @@ class TaijiDataset(Dataset):
         subject_dirs = [d for d in os.listdir(self.root_dir) if os.path.isdir(os.path.join(self.root_dir, d))]
         
         for subject_dir in subject_dirs:
-            if self.test_subject is not None and subject_dir == self.test_subject:
+            #condtion to avoid including test data while creating train data
+            if test==False and subject_dir == self.test_subject:
                 continue  # Skip the test subject
+            #condtion to avoid including train data while creating test data
+            elif test==True and subject_dir != self.test_subject:
+                continue  # Skip all subjects other than the test subject
+
 
             subject_path = os.path.join(self.root_dir, subject_dir)
             pose_dirs = os.listdir(subject_path)
-
             for pose_dir in pose_dirs:
+                # if test_subject==None:
+                #     print("-------------------------")
+                #     print("subject_dir :",subject_dir)
+                #     print("pose_dir :",pose_dir)
                 pose_path = os.path.join(subject_path, pose_dir)
                 pose_files = [f for f in os.listdir(pose_path) if f.endswith('.jpg')]
 
